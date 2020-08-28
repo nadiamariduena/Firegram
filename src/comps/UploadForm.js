@@ -63,12 +63,16 @@ const UploadForm = () => {
   return (
     <form>
       {/* 3__ */}
-      <input type="file" onChange={changeHandler} />
+      <label>
+        <input type="file" onChange={changeHandler} />
+        <span>+</span>
+      </label>
       {/* __10__ */}
       <div className="output">
         {error && <div className="error">{error}</div>}
         {/* AFTER you type the above, go to the browser and try uplading a mp3 and then an image
         You will see that you will still have an error:   ("Please select an image file (png or jpeg or jpeg") */}
+        {file && <div>{file.name}</div>}
       </div>
     </form>
   );
