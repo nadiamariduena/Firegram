@@ -1,5 +1,18 @@
 # APP is in (PROGRESS)
 
+#### STEPS
+
+<ul>
+
+<li>1_ INSTALL all the dependencies in the folder by typing: npm install </li>
+
+<li>2_ If the page dont show in the browser, INSTALL the following: npm install autoprefixer@9.8.0</li>
+<li>3_ INSTALL the gh pages dependency by typing: npm install gh-pages --save-dev</li>
+<li>4_ PRESUMING you already have the git repo ready and all is already uploaded, Go to the console and type: npm run build</li>
+<li>5_ After that type: npm run deploy</li>
+<li>6_ DONT FORGET to add the:   "homepage": "https://yourpage.github.io/yourprojectrepo"  , ont he top of the package json , just above  "name": "firegram". </li>
+ </ul>
+
 <!-- ----------------------- -->
 <!--       FIREGRAM          -->
 <!-- ----------------------- -->
