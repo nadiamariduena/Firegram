@@ -5,6 +5,7 @@ import "firebase/firestore";
 //
 
 // Your web app's Firebase configuration
+//-----------------------------------------
 var firebaseConfig = {
   apiKey: "AIzaSyCsLVXPG8BXTAVIg_oOiQLp2yUR0zWDzKE",
   authDomain: "melitta-firegram.firebaseapp.com",
@@ -14,5 +15,25 @@ var firebaseConfig = {
   messagingSenderId: "789625095364",
   appId: "1:789625095364:web:5db97b10932377ce29f591",
 };
+//-----------------------------------------
+//
+//
+//-----------------------------------------
+// HERE WE ARE INITIALIZING THE *** APP ***
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
+//-----------------------------------------
+//
+//
+//-----------------------------------------
+// HERE WE INITIALIZE the 2 kind of SERVICES:
+// STORAGE SERVICE AND THE FIRESTORE SERVICE
+//
+const projectStorage = firebase.storage();
+const projectFirestore = firebase.firestore();
+//
+//-----------------------------------------
+//
+//EXPORT IT
+//
+export { projectStorage, projectFirestore };
