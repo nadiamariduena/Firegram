@@ -50,7 +50,7 @@
 
 ###### handling hooks | img in DATABASE
 
-[<img src="./img_readme/DATABASE_firegram_process.gif">](https://youtu.be/7M7biQPpOs0)
+[<img src="./img-readme/DATABASE_firegram_process.gif">](https://youtu.be/7M7biQPpOs0)
 
 <br>
 <br>
