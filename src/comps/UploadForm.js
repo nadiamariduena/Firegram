@@ -1,6 +1,7 @@
 import React from "react";
 // connected to the 5__ step
 import { useState } from "react";
+import ProgressBar from "./progressBar";
 
 // 1__
 const UploadForm = () => {
@@ -65,16 +66,41 @@ const UploadForm = () => {
       {/* 3__ */}
       <label>
         <input type="file" onChange={changeHandler} />
-        <span>
-          <ion-icon name="add-circle-outline"></ion-icon>
-        </span>
+        <span>{/* <ion-icon name="add-circle-outline"></ion-icon> */} +</span>
       </label>
       {/* __10__ */}
       <div className="output">
         {error && <div className="error">{error}</div>}
         {/* AFTER you type the above, go to the browser and try uplading a mp3 and then an image
-        You will see that you will still have an error:   ("Please select an image file (png or jpeg or jpeg") */}
+        You will see that you will still have an error:   ("Please select an image file (png or jpeg or jpeg") 
+                  {file && <div>{file.name}</div>
+        
+        */}
         {file && <div>{file.name}</div>}
+
+        {/*          
+        
+                      You will create the following after having created the hooks inside 
+                      the useStorage.js and then after creating the progressBar.js
+                      
+                            {file && <ProgressBar />}
+
+                            The above will only shows if it turns to true, which means that if the 
+                            user selected a file THEN 
+                  SHOW THE progress bar. after this you need to pass the "file"  info/data (line: 9) to the child by using the 
+                  props like so:  
+
+                                    **      file={file}
+
+                              AND ALSO the setFile,
+                              
+                                   **       setFile={setFile}
+                              
+                              so that when the progress is complete , we can set the file
+                              back to null and then the progress bar doesnt show again.
+                      */}
+
+        {file && <ProgressBar file={file} setFile={setFile} />}
       </div>
     </form>
   );

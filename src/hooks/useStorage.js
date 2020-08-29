@@ -50,6 +50,7 @@ const useStorage = (file) => {
      */
 
   useEffect(() => {
+    //the HOOK
     // This will create a reference to the file inside the default FIREBASE STORAGE bucket
     const storageRef = projectStorage.ref(file.name);
     //
@@ -204,7 +205,7 @@ const useStorage = (file) => {
         setUrl(url);
       }
     );
-  }, [file]);
+  }, [file]); //this "file" is how you transport the hook info to other components
 
   /*
 
@@ -257,7 +258,7 @@ export default useStorage;
 
 
 
-                                                
+
 import { useState, useEffect } from "react";
 //
 //
