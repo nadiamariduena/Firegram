@@ -165,10 +165,10 @@ const useStorage = (file) => {
 
                               **      getDownloadURL()
 
-                FROM this line:
+                 This line 203:
                  const url = await storageRef.getDownloadURL();
 
-                 means :    we want the storage.ref , So what it is doing, is that its taking the 
+                 MEANS :    we want the storage.ref , So what it is doing, is that its taking the 
                  storage ref on line 54: const storageRef , so it finds the file we just uploaded:
 
                  projectStorage.ref(file.name); 
@@ -243,4 +243,58 @@ export default useStorage;
                             in that INSTEAD. so create a new COMPONENT, CALL IT : progressBar.js
 
 
+
+
+
+
+                                                ------------------
+                                **                  CLEAN VERSION              **
+                                                ------------------
+
+
+
+
+
+
+
+                                                
+import { useState, useEffect } from "react";
+//
+//
+//
+import { projectStorage } from "../firebase/config";
+//
+// the HOOK ----------
+const useStorage = (file) => {
+  
+  const [progress, setProgress] = useState(0);
+  const [error, setError] = useState(null);
+  const [url, setUrl] = useState(null);
+   // ----------
+  useEffect(() => {
+    //
+    const storageRef = projectStorage.ref(file.name);
+
+    storageRef.put(file).on(
+      "state_changed",
+      //
+      (snap) => {
+        let percentage = (snap.bytesTransferred / snap.totalBytes) * 100;
+        //
+        setProgress(percentage);
+        //
+      },    // ----------
+      (err) => {
+        setError(err);
+      },
+      async () => {
+        const url = await storageRef.getDownloadURL();
+        setUrl(url);
+      }   // ----------
+    );
+  }, [file]);
+
+  return { progress, url, error };
+};
+export default useStorage;
 */
