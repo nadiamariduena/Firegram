@@ -65,7 +65,9 @@ const UploadForm = () => {
       {/* 3__ */}
       <label>
         <input type="file" onChange={changeHandler} />
-        <span>+</span>
+        <span>
+          <ion-icon name="add-circle-outline"></ion-icon>
+        </span>
       </label>
       {/* __10__ */}
       <div className="output">
