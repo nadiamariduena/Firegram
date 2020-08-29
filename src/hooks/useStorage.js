@@ -55,7 +55,14 @@ const useStorage = (file) => {
     //
     //
     //
-    /*                              
+
+    // the following line :  storageRef.put(file)  ,means that  the (file) is going to be put/or downloaded to
+    // the reference projectStorage, here: projectStorage.ref(file.name);
+    storageRef.put(file).on("state_changed", (snap) => {
+      /*         
+      
+      
+      
                 DESCRIPTION:            **         storageRef.put(file).on("state_changed"
     
                                         **     storageRef.put(file)  THIS IS Asynchronous, 
@@ -80,9 +87,7 @@ const useStorage = (file) => {
 
    
     */
-    // the following line :  storageRef.put(file)  ,means that  the (file) is going to be put/or downloaded to
-    // the reference projectStorage, here: projectStorage.ref(file.name);
-    storageRef.put(file).on("state_changed", (snap) => {
+
       let percentage = (snap.bytesTransferred / snap.totalBytes) * 100;
     });
   }, [file]);
@@ -92,7 +97,7 @@ const useStorage = (file) => {
                                     **     (snap.bytesTransferred / snap.totalBytes)
                                     **      bytesTransferred  reserved word
                                       
-                                    
+
 
 
 
