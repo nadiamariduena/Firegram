@@ -34,7 +34,7 @@ const useStorage = (file) => {
 */
   const [progress, setProgress] = useState(0);
   const [error, setError] = useState(null);
-  const [url, set] = useState(null);
+  const [url, setUrl] = useState(null);
   //   this is the img URL i will get back from storage, after the image has fully uploaded
   //
   /*
@@ -91,16 +91,12 @@ const useStorage = (file) => {
     */
 
         let percentage = (snap.bytesTransferred / snap.totalBytes) * 100;
-        // setProgress(percentage); , this is going to be now the percentage of the UPLOAD
-        setProgress(percentage);
-      },
-      (err) => {
-        setError(err);
-      }
-    );
-  }, [file]);
-  /*
-                     DESCRIPTION:   **     let percentage = (snap.bytesTransferred / snap.totalBytes) * 100;
+        /*
+
+
+
+
+                   EXPLANATION:     **     let percentage = (snap.bytesTransferred / snap.totalBytes) * 100;
     
                                     **     (snap.bytesTransferred / snap.totalBytes)
                                     **      bytesTransferred  reserved word, this is a property in the snapshot,
@@ -122,4 +118,120 @@ const useStorage = (file) => {
 
 
      */
+        //
+        //
+        // setProgress(percentage); , this is going to be now the percentage of the UPLOAD
+        // now what you will do next, is set the value of this: [progress, setProgress] TO BE percentage
+        // and that will basically be a number between 0 and 100
+        setProgress(percentage);
+        //
+        /*
+             EXPLANATION:    **        },
+                                        (err) => {
+                                              setError(err);
+                                        }
+                                      );
+      
+                   After the setProgress, you have to set up a third argument 
+                   function, this function will fire if there s an error with the UPLOAD
+                   AND if that is the case, all we want to do is SET THE ERROR 
+                   using this function up here:
+                   
+                   
+                             **  setError(err);
+                   
+                   and we'll pass in this error:
+                   
+                            **   (err);
+                   
+                   now eventually we are going to "return" that down on the bottom of
+                the hook (later) like so:   return { progress, url, error };
+                
+                so that in the component we use in we can do something with that
+                error if we want to.   And finally we can pass in another argument and this argument
+                is also a function,  which is going to fire when the upload is fully complete
+        
+                                    },
+                                    async () => {
+                                        const url = await storageRef.getDownloadURL();
+                                        setUrl(url);
+                                        }
+                                    );
+                                                
+
+                I am going to mark this as an ASYNC function, because we are going to use AWAIT inside
+                this function, now what i want to do at this point is get the URL of the image that has
+                just been uploaded
+
+                              **      getDownloadURL()
+
+
+                 const url = await storageRef.getDownloadURL();
+
+                 means :    we want the storage.ref and then we want to get download url which is
+                 a function, so this is asynchronous. So what it s doing is, that its taking the storage ref on top:
+                const storageRef  so it finds the file we just uploaded: projectStorage.ref(file.name); and then it
+                get the download URL : .getDownloadURL();  and then we are storing it inside this variable   const url =  , 
+                from this line:  const url = await storageRef.getDownloadURL();  
+
+                Now all we need to do is say      setUrl(url);  and pass in the url like so:    (url);
+
+                This ULR doesnt OVERWRITE the url on the top of the file :   const [url, setUrl] = useState(null);
+                BECAUSE its inside a separate SCOPE inside this function here:
+
+                                                  async () => {
+                                                    const url = await storageRef.getDownloadURL();
+                                                    setUrl(url);
+                                                    }
+                                                    );
+
+                we are only updating that value right here:
+                                                         setUrl(url);
+
+      */
+      },
+      (err) => {
+        setError(err);
+      },
+      async () => {
+        const url = await storageRef.getDownloadURL();
+        setUrl(url);
+      }
+    );
+  }, [file]);
+
+  /*
+
+                                     **    THE LAST THING TO DO  ***
+
+
+                                    WE have to return the values that we just finished
+                                    using in the function useEffect, these values are:
+
+                                        const [progress, setProgress] 
+                                        const [error, setError] 
+                                        const [url, setUrl] 
+
+                                    
+
+
+*/
+
+  return { progress, url, error };
 };
+//  you have to export this hook so that you can use all the values you have inside of it,in another component.
+export default useStorage;
+
+/*
+
+                                     **    AFTER SETTING UP ALL THIS HOOK  ***
+
+
+                              useStorage
+                                    
+                            What we will do now , is create a NEW COMPONENT for a progress
+                            BAR which will show the progress of the upload and we will use the HOOK
+                            in that INSTEAD. so create a new COMPONENT, CALL IT : progressBar.js
+                            
+
+*/
