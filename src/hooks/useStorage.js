@@ -160,23 +160,29 @@ const useStorage = (file) => {
                                                 
 
                 I am going to mark this as an ASYNC function, because we are going to use AWAIT inside
-                this function, now what i want to do at this point is get the URL of the image that has
+                this function, now what i want to do at this point, is get the URL of the image that has
                 just been uploaded
 
                               **      getDownloadURL()
 
-
+                FROM this line:
                  const url = await storageRef.getDownloadURL();
 
-                 means :    we want the storage.ref and then we want to get download url which is
-                 a function, so this is asynchronous. So what it s doing is, that its taking the storage ref on top:
-                const storageRef  so it finds the file we just uploaded: projectStorage.ref(file.name); and then it
-                get the download URL : .getDownloadURL();  and then we are storing it inside this variable   const url =  , 
-                from this line:  const url = await storageRef.getDownloadURL();  
+                 means :    we want the storage.ref , So what it is doing, is that its taking the 
+                 storage ref on line 54: const storageRef , so it finds the file we just uploaded:
 
-                Now all we need to do is say      setUrl(url);  and pass in the url like so:    (url);
+                 projectStorage.ref(file.name); 
+                 
+                 and then it  get the download URL : 
+                 
+                 .getDownloadURL();  
+                 
+                 to then we are storing it inside this variable: const url =  , 
+                from the line 203:  const url = await storageRef.getDownloadURL(); 
 
-                This ULR doesnt OVERWRITE the url on the top of the file :   const [url, setUrl] = useState(null);
+                Now all we need to do is set :     setUrl(url);  and pass in the url like so:    (url);
+
+                This ULR doesn't OVERWRITE the url on the line 37 :   const [url, setUrl] = useState(null);
                 BECAUSE its inside a separate SCOPE inside this function here:
 
                                                   async () => {
@@ -223,8 +229,11 @@ const useStorage = (file) => {
 export default useStorage;
 
 /*
+                                                ------------------
+                                **        AFTER SETTING UP ALL THIS HOOK    **
+                                                ------------------
 
-                                     **    AFTER SETTING UP ALL THIS HOOK  ***
+                                     
 
 
                               useStorage
@@ -232,6 +241,6 @@ export default useStorage;
                             What we will do now , is create a NEW COMPONENT for a progress
                             BAR which will show the progress of the upload and we will use the HOOK
                             in that INSTEAD. so create a new COMPONENT, CALL IT : progressBar.js
-                            
+
 
 */
