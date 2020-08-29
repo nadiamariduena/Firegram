@@ -58,11 +58,13 @@ const useStorage = (file) => {
 
     // the following line :  storageRef.put(file)  ,means that  the (file) is going to be put/or downloaded to
     // the reference projectStorage, here: projectStorage.ref(file.name);
-    storageRef.put(file).on("state_changed", (snap) => {
-      /*         
+    storageRef.put(file).on(
+      "state_changed",
+      (snap) => {
+        /*         
       
       
-      
+
                 DESCRIPTION:            **         storageRef.put(file).on("state_changed"
     
                                         **     storageRef.put(file)  THIS IS Asynchronous, 
@@ -88,14 +90,31 @@ const useStorage = (file) => {
    
     */
 
-      let percentage = (snap.bytesTransferred / snap.totalBytes) * 100;
-    });
+        let percentage = (snap.bytesTransferred / snap.totalBytes) * 100;
+        // setProgress(percentage); , this is going to be now the percentage of the UPLOAD
+        setProgress(percentage);
+      },
+      (err) => {
+        setError(err);
+      }
+    );
   }, [file]);
   /*
-                     DESCRIPTION:    **     let percentage = (snap.bytesTransferred / snap.totalBytes) * 100;
+                     DESCRIPTION:   **     let percentage = (snap.bytesTransferred / snap.totalBytes) * 100;
     
                                     **     (snap.bytesTransferred / snap.totalBytes)
-                                    **      bytesTransferred  reserved word
+                                    **      bytesTransferred  reserved word, this is a property in the snapshot,
+                                            that tells you how many bytes have being transferred at this moment in time
+                                            when the FUNCTION is fired, AND that divided by snap.totalBytes which
+                                            represents the total bytes in the file the TOTAL file size and then you
+                                            TAKE these 2 and times them (*) by 100, so this is just a formula for 
+                                            percentage.
+
+                                            We take the bytes transferred, divide that by the total bytes and times 
+                                            it by 100 to get a percentage, and that will now be the percentage of 
+                                            the UPLOAD
+
+
                                       
 
 
