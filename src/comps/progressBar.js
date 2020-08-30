@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useEffect } from "react";
 import useStorage from "../hooks/useStorage";
-import { useEffect } from "react";
+// import { motion } from 'framer-motion';
 
 //
 //
@@ -82,8 +82,7 @@ const ProgressBar = ({ file, setFile }) => {
         setFile(null);
       }
     },
-    [url],
-    setFile
+    [url, setFile]
     // You need to add the SETFILE here because you are using it inside the statement
   );
   //

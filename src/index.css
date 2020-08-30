@@ -82,7 +82,14 @@ label:hover {
   background: var(--primary);
   margin-top: 20px;
 }
+/* 
 
+
+
+                            GRID
+
+
+*/
 /* image grid styles */
 .img-grid {
   margin: 20px auto;
@@ -93,6 +100,11 @@ label:hover {
 .img-wrap {
   overflow: hidden;
   height: 0;
+  /* 
+  when you add a padding top and bottom 50% its going to be perfectly square IF IT HAS NO HEIGHT,
+  so thats why you see the height at 0
+  
+  */
   padding: 50% 0;
   /* padding controls height, will always be perfectly square regardless of width */
   position: relative;

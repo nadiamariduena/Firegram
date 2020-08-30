@@ -1,12 +1,25 @@
 import { useState, useEffect } from "react";
-
 import { projectFirestore } from "../firebase/config";
-//
 
 const useFirestore = (collection) => {
-  // setDocs to update the documents
-  //   in the beginning its going to be an empty array like so: ([]); and thats because we dont have any docs
   const [docs, setDocs] = useState([]);
+
+  useEffect(() => {
+    const unsub = projectFirestore
+      .collection(collection)
+      .orderBy("createdAt", "desc") //the order of the images , descendent order ect
+      // again the snap shot at real time
+      .onSnapshot((snap) => {
+        let documents = []; //because its empty from the start
+        snap.forEach((doc) => {
+          documents.push({ ...doc.data(), id: doc.id });
+        });
+        setDocs(documents);
+      });
+    //
+    return () => unsub();
+    //
+  }, [collection]);
 
   return { docs };
 };
@@ -24,3 +37,5 @@ const useFirestore = (collection) => {
 
 
 */
+
+export default useFirestore;
