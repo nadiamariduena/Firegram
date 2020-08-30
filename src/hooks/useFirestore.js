@@ -10,7 +10,7 @@ const useFirestore = (collection) => {
       .orderBy("createdAt", "desc") //the order of the images , descendent order ect
       // again the snap shot at real time
       .onSnapshot((snap) => {
-        let documents = []; //because its empty from the start
+        let documents = []; //documents = []; because its empty from the start
         snap.forEach((doc) => {
           documents.push({ ...doc.data(), id: doc.id });
         });

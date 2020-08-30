@@ -54,3 +54,7 @@
 
 <br>
 <br>
+
+###### Connecting the DB to the docs | showing the images on the browser
+
+###### CREATE THE MODAL | ADDING THE MOTION for the animation
