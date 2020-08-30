@@ -1,6 +1,6 @@
 import React from "react";
 import useFirestore from "../hooks/useFirestore";
-
+import { motion } from "framer-motion";
 //
 
 const ImageGrid = ({ setSelectedImg }) => {
@@ -13,10 +13,38 @@ const ImageGrid = ({ setSelectedImg }) => {
         docs.map((doc) => (
           //
           //
-          <div
+          <motion.div
             className="img-wrap"
             key={doc.id}
+            layout
             /* 
+
+
+
+
+                                            whileHover={{ opacity: 1 }}
+
+            // this {{}} because you are going to use some css properties
+            // remember the opacity in the css is at : 0.8
+            
+            
+            THE LAYOUT attr is going to make that when you upload an image, instead of pushing the other images
+            in a rude way, the layout attr is going to make it smoothly  
+            
+            Now do the same with the <img like so:
+
+                 <motion.img
+              src={doc.url}
+              alt="uploaded pic"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 1 }}
+            />
+            
+            NOW GO TO THE PREGRESS BAR to animate it.
+            */
+
+            /* -------------------------------------------------------------------------
             
             
             So now whenever you click on an image, you are updating the value of this:
@@ -34,8 +62,15 @@ const ImageGrid = ({ setSelectedImg }) => {
             */
             onClick={() => setSelectedImg(doc.url)}
           >
-            <img src={doc.url} alt="uploaded pic" />
-          </div>
+            <motion.img
+              src={doc.url}
+              alt="uploaded pic"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              // it will take one sec until the img appears
+              transition={{ delay: 1 }}
+            />
+          </motion.div>
         ))}
     </div>
   );
