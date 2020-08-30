@@ -33,10 +33,10 @@ const projectStorage = firebase.storage();
 const projectFirestore = firebase.firestore();
 // the Time stamp the file is going to have, so that we cn organize it chronologically
 const timestamp = firebase.firestore.FieldValue.serverTimestamp;
-// So whenever you want to create a new time stamp you can just invoke the variable function: timestamp
+// So whenever you want to create a new time stamp you can just invoke the function: timestamp
 // because this is a function: timestamp that invokes this:  firebase.firestore.FieldValue.serverTimestamp;
-//  Now EXPORT the timestamp, line 43 : timestamp };
-// go back to use storaje.js
+//  Now EXPORT the timestamp, line 44 : timestamp };
+// go back to useStorage.js
 //-----------------------------------------
 //
 //EXPORT IT

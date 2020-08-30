@@ -206,7 +206,84 @@ export default ProgressBar;
 
                            NOW you can use the 2timestamp"
 
-                             collectionRef.add({ url, createdAt });
+                        line 211:     collectionRef.add({ url, createdAt });
+
+
+                        So once the UPLOAD is completed, line 211 useStorage:  createdAt });
+                        we have the url, line 209 useStorage:   const url =   ,
+                        we created a new document , line 211:  collectionRef.add ,
+                        inside the collection , line 60:  = projectFirestore.collection("images");
+                                        to match that images that s just been uploaded
+                                        and we are storing a URL, line 211:
+                                        
+                                        add({ url, createdAt });
+                                        
+                                        of that image and when
+                                        it was created:
+                                        
+                                         
+                                        createdAt });
+
+                                        okay thats all we are doing here
+
+                                 ***       NOW go back to the firebase STORAGE and delete all the images
+                                 because they dont have the documents associated with them inside the firestore.
+
+                                 - Try to upload A NEW image
+
+                                 - once its UPLOADED, refresh the firebase page and then go to the
+                                 database inside the CLOUD Firestore, you should have a collection
+                                 called images and a code and the url 
+
+
+                                 This MEANS that we can now LISTEN to this COLLECTION from our website to get all
+                                 of the urls in real time as they are added into our project, now the next step will be
+                                 create a NEW custom HOOK called : USE FIRESTORE
+
+
+
+
+
+                                                    ----------------------------------
+
+                                                create a NEW custom HOOK called : USE FIRESTORE
+
+                                                    ----------------------------------
+
+
+
+
+                                               Create a new component inside the comps folder and
+                                                    call it : imageGrid.js
+
+
+                                                    once you created the following, you will want to access
+                                                    the DATA from our firestore database:
+
+                                                    import React from "react";
+
+                                                        const ImageGrid = () => {
+                                                        return <div className="img-grid">images</div>;
+                                                        };
+
+                                                        export default ImageGrid;
+
+
+                                                TO ACCESS it, we could import the sdk into the grid file and 
+                                                grab the data that way but instead, we are going to create another
+                                                 HOOK to do all the jeavy lifting for US, that way we make our 
+                                                 code more reusable  any time we want to get FIRESTORE data from
+                                                 a collection we could just use  the use firestore HOOK that    we
+                                                 are going to create.
+
+                                                 go to the hooks folder and create a file called: useFirestore.js
+
+
+                                                 continue there
+
+
+
+
 
 
 
