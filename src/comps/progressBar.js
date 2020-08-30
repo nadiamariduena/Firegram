@@ -57,11 +57,19 @@ const ProgressBar = ({ file, setFile }) => {
                                     --------------------------------------------------------
 
 
+                                                            *
+                                                   --------------------
+                                          REMOVE THE PROGRESS BAR once  we reach the 100%
+                                                    --------------------
+
+
+                                                 seEffect(() => {  }, [url]);
+  
+                           Here you will pass a FUNCTION that will run when the URL changes
 
 
 
-
-
+                                                            *                                    
 
     */
 
@@ -78,18 +86,9 @@ const ProgressBar = ({ file, setFile }) => {
     setFile
     // You need to add the SETFILE here because you are using it inside the statement
   );
-  /*
-
-
-                                                seEffect(() => {  }, [url]);
-  
-                                     Here you will pass a FUNCTION that will run when the URL changes
-  
-  
-  
-  
-  */
-
+  //
+  //
+  //                                    -----------------------------------------------------------
   return (
     <div className="progress-bar" style={{ width: progress + "%" }}></div>
     /*
@@ -133,3 +132,82 @@ const ProgressBar = ({ file, setFile }) => {
 };
 
 export default ProgressBar;
+
+/*
+
+
+
+                                     ***       SHOW THE IMAGES we UPLOADED  ***
+
+
+                                                NEXT thing we will do is cycle the images
+                                                we have inside the STORAGE and ADD the to 
+                                                the DATABASE.
+
+
+                             1_ we need to store the URL's of the images inside the DATABASE,
+                                so that we can use the data to show the images in he browser.
+
+                            2_  Go back to the userStorage HOOK, line 204:
+                                  async () => {
+                                    const url = await storageRef.getDownloadURL();
+                                    setUrl(url);
+
+                            3_ at that point we want to save this URL to the firestore
+                            4_ WHAT we want is to make a document out of the images that we have 
+                                    in storage with of course the URL's
+
+                            5_ import the project FIRESTORE from the config.js we have here (we
+                                have the project firestore EXPORTED on the bottom )
+                            6_  to export it, add the following to this line in useStorage.js:
+
+                            Add this:
+                            projectFirestore
+                            to this:
+                            import { projectStorage } from "../firebase/config";
+                            it should look like so:
+
+                            import { projectStorage, projectFirestore } from "../firebase/config";
+
+                            NEXT...
+
+                            7_ WE NEED to make a reference to a CoLLECTION that we want to save
+                            the document to:
+
+                            8_ go to line 56 in useStorage.js and add the following:
+
+                                const collectionRef = projectFirestore.collection("images");
+
+                            9_ then  go to line 206 in useStorage.js and add the following:
+
+                            the above obj represent "this document we just mentioned in step 4"
+
+                             collectionRef.add({ url, createdAt });
+
+                             its going to give you and error because to use this, you have to 
+                             go to the config.js and create the function linked to time stamp
+                             , so follow these steps i wrote there and then go back to the
+                             useStorage.js and import it in the beginning of the file like so:
+
+                             import {
+                                 projectStorage,
+                                    projectFirestore,
+                                                         timestamp,
+                        } from "../firebase/config";
+
+                **        AND THEN 
+                         go to line 210 in the same file you just imported the stuff, and add the
+                         following:
+                           const createdAt = timestamp();
+                           
+                           ** remember timestamp(); is a function in the config, it will
+                           help you to keep a timestamp inprint of when the user uploaded
+                           the image and it will help you to keep it chronologically.
+
+                           NOW you can use the 2timestamp"
+
+                             collectionRef.add({ url, createdAt });
+
+
+
+*/

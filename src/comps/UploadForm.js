@@ -32,7 +32,7 @@ const UploadForm = () => {
   // ------
   // 7__
   //
-  const types = ["image/png", "image/jpg", "image/jpeg"];
+  const types = ["image/png", "image/jpg", "image/jpeg", "image/gif"];
   //
   //
 
@@ -57,7 +57,7 @@ const UploadForm = () => {
       // IF SO, then show and error, here the error will be just resetting to null again, you can also send an alert
       // but alerts are a ugly :)     alert("choose a correct file");
       // 9__
-      setError("Please select an image file (png or jpeg or jpeg");
+      setError("Please select an image file (png or jpeg ,jpeg or gif");
     }
   };
 

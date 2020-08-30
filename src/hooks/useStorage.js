@@ -2,7 +2,11 @@ import { useState, useEffect } from "react";
 //
 //
 //
-import { projectStorage } from "../firebase/config";
+import {
+  projectStorage,
+  projectFirestore,
+  timestamp,
+} from "../firebase/config";
 //
 /*
 
@@ -53,6 +57,7 @@ const useStorage = (file) => {
     //the HOOK
     // This will create a reference to the file inside the default FIREBASE STORAGE bucket
     const storageRef = projectStorage.ref(file.name);
+    const collectionRef = projectFirestore.collection("images");
     //
     //
     //
@@ -202,6 +207,8 @@ const useStorage = (file) => {
       },
       async () => {
         const url = await storageRef.getDownloadURL();
+        const createdAt = timestamp();
+        collectionRef.add({ url, createdAt });
         setUrl(url);
       }
     );
