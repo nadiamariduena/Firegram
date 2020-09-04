@@ -1,4 +1,22 @@
-# APP in (PROGRESS)
+<!-- ----------------------- -->
+<!--       FIREGRAM          -->
+<!-- ----------------------- -->
+
+<br>
+
+###### Connecting the DB to the docs | showing the images on the browser
+
+###### CREATE THE MODAL | ADDING THE MOTION for the animation
+
+[<img src="./src/img-readme/project _done.gif">](https://youtu.be/Bk1J_TbwUds)
+
+<br>
+<br>
+
+<hr>
+
+<br>
+<br>
 
 #### STEPS
 
@@ -37,26 +55,20 @@
 <li>_18 The following will serve to build the database, in the same file type the following: import "firebase/firestore"; </li>
 
  </ul>
-<!-- ----------------------- -->
-<!--       FIREGRAM          -->
-<!-- ----------------------- -->
 
-<br>
-<br>
 <br>
 <br>
 
 <hr>
 
+<br>
+<br>
+
 ###### handling hooks | img in DATABASE
+
+<br>
 
 [<img src="./src/img-readme/DATABASE_firegram_process.gif">](https://youtu.be/7M7biQPpOs0)
 
 <br>
 <br>
-
-###### Connecting the DB to the docs | showing the images on the browser
-
-###### CREATE THE MODAL | ADDING THE MOTION for the animation
-
-[<img src="./src/img-readme/project _done.gif">](https://youtu.be/Bk1J_TbwUds)
