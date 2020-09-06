@@ -14,7 +14,7 @@
 # API
 /src
 /firebase
-config.js
+.config.js
 
 
 # misc
