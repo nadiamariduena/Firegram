@@ -11,10 +11,6 @@
 # production
 /build
 
-# API
-/src
-/.firebase
-.config.js
 
 
 # misc
