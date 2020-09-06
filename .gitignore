@@ -13,7 +13,7 @@
 
 # API
 /src
-/firebase
+/.firebase
 .config.js
 
 
